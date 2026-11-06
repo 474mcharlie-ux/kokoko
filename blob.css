@@ -1,0 +1,66 @@
+/* ─────────────  Interactive hero sphere (blob.js)  ───────────── */
+
+/* The sphere layer is positioned inside the hero, so the hero must be a positioning
+   context. Vertical swipes still scroll the page on phones; horizontal drags spin the sphere. */
+.hero {
+  position: relative;
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Hero copy + dashboard stay above the sphere, exactly like the reference
+   (headline text overlaps the dots). */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+}
+
+/* Clipping box that covers the hero. It never blocks clicks – all pointer
+   handling is done on the hero itself in blob.js. */
+.blob-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Soft colour bloom behind the dots (size/position set in blob.js) */
+.blob-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--blob-glow-a, rgba(255, 106, 42, 0.2)) 0%,
+    var(--blob-glow-b, rgba(217, 75, 32, 0.09)) 38%,
+    transparent 68%
+  );
+  transition: opacity 1.4s ease;
+}
+
+.blob-canvas {
+  position: absolute;
+  display: block;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.blob-layer.is-ready .blob-glow,
+.blob-layer.is-ready .blob-canvas {
+  opacity: 1;
+}
+
+/* No accidental text selection while spinning the sphere */
+.hero.blob-dragging,
+.hero.blob-dragging * {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blob-glow,
+  .blob-canvas {
+    transition: none;
+  }
+}

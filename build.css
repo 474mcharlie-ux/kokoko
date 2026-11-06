@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Verity — live build intro
+   Styles for build.js: the tiny collaborator cursors, the wireframe boxes they
+   "draw", and the skip pill. Everything is prefixed vb- and nothing here touches
+   your existing classes except while the intro is running.
+
+   To remove the intro entirely: delete the three build lines in index.html
+   (this stylesheet, the small inline <script> in <head>, and build.js).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Pre-paint guard. The inline script in <head> adds .vb-init, so nothing of the
+   finished page flashes before build.js takes over (build.js removes it, and a
+   failsafe in <head> removes it after 8s if build.js never loads).
+   -------------------------------------------------------------------------- */
+html.vb-init .nav,
+html.vb-init main,
+html.vb-init .footer {
+  opacity: 0 !important;
+}
+
+/* While the intro runs the script owns scrolling: no smooth-scroll fighting it,
+   and no browser scroll-anchoring nudging the page. */
+html.vb-active {
+  scroll-behavior: auto !important;
+  overflow-anchor: none;
+}
+
+/* --------------------------------------------------------------------------
+   States applied to the page's own elements (all removed when the intro ends)
+   -------------------------------------------------------------------------- */
+
+/* not built yet */
+.vb-pending {
+  opacity: 0 !important;
+}
+
+/* hero headline words waiting for their turn (script.js already splits them) */
+.hero-headline .w.vb-hold {
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* typed text: words are wrapped at runtime and un-hidden one by one.
+   visibility (not opacity) so gradient-clipped headings keep rendering. */
+.vb-armed .vb-w:not(.vb-on) {
+  visibility: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Overlay
+   -------------------------------------------------------------------------- */
+.vb-root {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout style;
+}
+
+/* wireframe box a cursor drags out */
+.vb-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  border: 1px dashed var(--c);
+  background: var(--cw);
+  border-radius: 3px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  will-change: transform, width, height;
+}
+.vb-box.is-on {
+  opacity: 1;
+}
+.vb-h {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #090807;
+  border: 1px solid var(--c);
+}
+.vb-h.a { left: -4px;  top: -4px; }
+.vb-h.b { right: -4px; top: -4px; }
+.vb-h.c { left: -4px;  bottom: -4px; }
+.vb-h.d { right: -4px; bottom: -4px; }
+.vb-dim {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-top: 8px;
+  transform: translateX(-50%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: var(--c);
+  color: var(--fg);
+  font: 600 9px/1.2 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+/* text caret that follows typing */
+.vb-caret {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 2px;
+  height: 16px;
+  border-radius: 1px;
+  background: var(--c);
+  opacity: 0;
+  will-change: transform;
+}
+.vb-caret.is-on {
+  opacity: 1;
+  animation: vb-blink 0.9s steps(1) infinite;
+}
+@keyframes vb-blink {
+  50% { opacity: 0.25; }
+}
+
+/* the cursor itself */
+.vb-cursor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  will-change: transform;
+}
+.vb-cursor.is-on {
+  opacity: 1;
+}
+.vb-cursor svg {
+  display: block;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+}
+.vb-tag {
+  position: absolute;
+  left: 11px;
+  top: 15px;
+  padding: 2px 7px 3px;
+  border-radius: 999px;
+  background: var(--c);
+  color: var(--fg);
+  font: 600 10px/1.2 var(--font-body, "Inter", system-ui, sans-serif);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px -4px rgba(0, 0, 0, 0.6);
+}
+.vb-ring {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--c);
+  border-radius: 50%;
+  opacity: 0;
+}
+.vb-ring.is-pulse {
+  animation: vb-ring 0.5s ease-out;
+}
+@keyframes vb-ring {
+  0%   { opacity: 0.95; transform: scale(0.3); }
+  100% { opacity: 0;    transform: scale(1.7); }
+}
+
+/* progress / skip pill */
+.vb-skip {
+  position: fixed;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 7px 7px 14px;
+  border: 1px solid var(--border, rgba(244, 239, 230, 0.12));
+  border-radius: 999px;
+  background: rgba(16, 14, 12, 0.74);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  color: var(--ink, #d6d0c6);
+  font: 500 12px/1 var(--font-body, "Inter", system-ui, sans-serif);
+  overflow: hidden;
+  opacity: 0;
+  transform: translate(-50%, 8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: auto;
+}
+.vb-skip.is-on {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.vb-skip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent, #ff6a2a);
+  animation: vb-dot 1.2s ease-in-out infinite;
+}
+@keyframes vb-dot {
+  50% { opacity: 0.3; }
+}
+.vb-skip-text {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.vb-skip-btn {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(244, 239, 230, 0.1);
+  color: var(--ink-bright, #f4efe6);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.vb-skip-btn:hover {
+  background: rgba(244, 239, 230, 0.2);
+}
+.vb-skip-btn:focus-visible {
+  outline: 2px solid var(--accent, #ff6a2a);
+  outline-offset: 2px;
+}
+.vb-skip-bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: var(--p, 0%);
+  background: var(--accent, #ff6a2a);
+}
+
+@media (max-width: 520px) {
+  .vb-tag { font-size: 9px; padding: 1px 6px 2px; }
+}

@@ -1,0 +1,163 @@
+/* ─────────────  Interactive dashboard graph (graph.js)  ───────────── */
+
+/* The graph fills the existing .db-graph-area. The original SVG stays in the layout
+   (it keeps the box size and is the fallback when WebGL is unavailable) and is only
+   hidden once the WebGL version is live. */
+.db-graph-area {
+  position: relative;
+  min-height: clamp(240px, 34vw, 340px);
+}
+
+.db-graph-area.graph-live .db-svg {
+  visibility: hidden;
+}
+
+/* soft violet glow behind the client node (the client always sits in the centre) */
+.db-graph-area.graph-live::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 46%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.34) 0%, rgba(0, 0, 0, 0.425) 40%, transparent 68%);
+  pointer-events: none;
+}
+
+.graph-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+  cursor: grab;
+  pointer-events: auto;                 /* the dashboard may be decorative; the graph is not */
+  touch-action: pan-y pinch-zoom;       /* vertical swipes scroll the page, horizontal drags rotate */
+}
+
+.db-graph-area.graph-live .graph-canvas {
+  opacity: 1;
+}
+
+.graph-canvas.is-pointer { cursor: pointer; }
+.graph-canvas.is-grabbing { cursor: grabbing; }
+
+/* DOM labels, positioned from JS every frame */
+.graph-labels {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.gl-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: inherit;
+  white-space: nowrap;
+  color: var(--c, #c7d3ea);
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.9), 0 0 2px rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  will-change: transform, opacity;
+}
+
+.gl-label.is-firm {
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+/* relationship strength shown on the key links */
+.gl-weight {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 1px 4px;
+  border-radius: 6px;
+  background: rgba(10, 10, 18, 0.55);
+  color: #da9311;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.2;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  will-change: transform, opacity;
+}
+
+/* info card shown on hover / selection */
+.graph-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  min-width: 164px;
+  max-width: 230px;
+  padding: 10px 12px;
+  border: 1px solid rgba(155, 99, 16, 0.4);
+  border-radius: 10px;
+  background: rgba(16, 16, 24, 0.94);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+  color: #d9def0;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+
+.graph-card.is-on { opacity: 1; }
+
+.gc-head { display: flex; align-items: center; gap: 7px; color: #fff; font-size: 13px; }
+.gc-dot { width: 8px; height: 8px; flex: none; border-radius: 50%; }
+.gc-type { margin: 2px 0 6px 15px; color: #8d96ab; font-size: 10.5px; letter-spacing: 0.04em; text-transform: uppercase; }
+.gc-note { color: #b7bfd2; }
+.gc-stats { display: flex; flex-wrap: wrap; gap: 4px 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(255, 255, 255, 0.08); color: #8d96ab; font-size: 11px; }
+.gc-stats b { color: #fff; font-weight: 600; }
+
+.graph-hint {
+  position: absolute;
+  right: 12px;
+  bottom: 8px;
+  color: #7d8699;
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.graph-hint.is-hidden { opacity: 0; }
+
+/* sidebar tabs switch the lens */
+.dashboard-frame .db-sidebar-item {
+  pointer-events: auto;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@media (max-width: 520px) {
+  .graph-card { min-width: 0; max-width: 170px; padding: 7px 9px; font-size: 10.5px; }
+  .gc-head { font-size: 11.5px; }
+  .gc-type { margin-bottom: 4px; font-size: 9.5px; }
+  .gc-stats { margin-top: 6px; padding-top: 6px; font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .graph-canvas,
+  .gl-label,
+  .gl-weight,
+  .graph-card,
+  .graph-hint {
+    transition: none;
+  }
+}

@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verity — Intelligence for Law Firms | Sovereign Labs</title>
+  <meta name="description" content="Verity gives law firm partners complete visibility into their clients, relationships, and opportunities — all backed by traceable evidence." />
+  <meta name="keywords" content="Verity, law firm intelligence, legal AI, client management, relationship mapping, law firm software, Sovereign Labs" />
+  <link rel="canonical" href="https://verity.sovereignlabs.com/" />
+  <link rel="icon" type="image/png" href="favicon-16x16.png" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Verity — Intelligence for Law Firms" />
+  <meta property="og:description" content="A partner should be able to look at Verity and understand: who are our clients, what are they doing, and who are they connected to." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://verity.sovereignlabs.com/" />
+  <meta property="og:site_name" content="Verity" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:image" content="https://verity.sovereignlabs.com/assets/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Verity — Relationships, Evidence, Opportunities" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Verity — Intelligence for Law Firms" />
+  <meta name="twitter:description" content="Complete visibility into your firm's clients, relationships, and opportunities — backed by evidence." />
+  <meta name="twitter:image" content="https://verity.sovereignlabs.com/assets/og-image.jpg" />
+
+  <!-- Logo -->
+  <link rel="icon" href="/logo-mark.png" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/logo-mark.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/logo-mark.png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/blob.css" />
+  <link rel="stylesheet" href="/graph.css" />
+  <!-- Transparent UI overlay: delete this one line to return to the opaque look -->
+  <link rel="stylesheet" href="/glass.css" />
+  <!-- Live build intro (delete this line, the guard script below and build.js to remove it) -->
+  <link rel="stylesheet" href="/build.css" />
+
+  <!-- Live build intro: pre-paint guard (hides the page until build.js takes over) -->
+  <script>
+    (function () {
+      var d = document.documentElement, q = location.search;
+      var off = window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+                /[?&]nobuild\b/.test(q) ||
+                (location.hash.length > 1 && !/[?&]build\b/.test(q));
+      window.__vbOn = !off;
+      if (off) return;
+      try { history.scrollRestoration = "manual"; } catch (e) {}
+      /* /?build#section: drop the hash so the browser does not jump mid-build */
+      if (location.hash.length > 1) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} }
+      d.classList.add("vb-init");
+      /* failsafe: if build.js never takes over, show the page normally */
+      setTimeout(function () {
+        if (d.classList.contains("vb-init")) { d.classList.remove("vb-init"); window.__vbOn = false; }
+      }, 6000);
+    })();
+  </script>
+
+  <!-- three.js (pinned version) for the interactive hero sphere -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://verity.sovereignlabs.com/#organization",
+        "name": "Sovereign Labs",
+        "url": "https://verity.sovereignlabs.com/",
+        "logo": "https://verity.sovereignlabs.com/assets/apple-touch-icon.png"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://verity.sovereignlabs.com/#website",
+        "name": "Verity",
+        "url": "https://verity.sovereignlabs.com/",
+        "publisher": { "@id": "https://verity.sovereignlabs.com/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://verity.sovereignlabs.com/#software",
+        "name": "Verity",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "Relationship-intelligence platform giving law firm partners a single, evidence-backed view of their clients, the networks around them, and the opportunities inside those networks.",
+        "brand": { "@id": "https://verity.sovereignlabs.com/#organization" },
+        "url": "https://verity.sovereignlabs.com/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="Verity home">
+        <img class="logo-mark" src="/assets/logo-mark.png" alt="" width="30" height="30" />
+        <span class="logo-text">Verity</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#how-it-works" class="nav-link">How it works</a>
+        <a href="#capabilities" class="nav-link">Capabilities</a>
+        <a href="#partner-view" class="nav-link">For Partners</a>
+        <a href="#control" class="nav-link">Control</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="#cta" class="btn-ghost">Request Access</a>
+        <a href="#cta" class="btn-primary">See Verity</a>
+      </div>
+      <button class="nav-toggle" aria-label="Open menu" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#how-it-works" class="mobile-link">How it works</a>
+    <a href="#capabilities" class="mobile-link">Capabilities</a>
+    <a href="#partner-view" class="mobile-link">For Partners</a>
+    <a href="#control" class="mobile-link">Control</a>
+    <a href="#cta" class="mobile-link mobile-cta">Request Access</a>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="blueprint-grid" aria-hidden="true"></div>
+      <div class="glow glow-1" aria-hidden="true"></div>
+      <div class="glow glow-2" aria-hidden="true"></div>
+      <div class="glow glow-3" aria-hidden="true"></div>
+
+      <!-- Interactive dotted sphere (blob.js) -->
+      <div class="blob-layer" id="blobLayer" aria-hidden="true">
+        <div class="blob-glow"></div>
+        <canvas class="blob-canvas" id="blobCanvas"></canvas>
+      </div>
+
+      <div class="hero-inner">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+         Sovereign Labs
+        </div>
+
+        <h1 class="hero-headline">
+          The intelligence layer<br/>your firm has been<br/><em>missing.</em>
+        </h1>
+
+        <p class="hero-sub">
+          A partner should be able to look at Verity and understand:<br/>
+          <span class="hero-quote">"Who are our clients? What are they doing? Who are they connected to? What&rsquo;s changing? And what should we be paying attention to?"</span>
+        </p>
+
+        <div class="hero-actions">
+          <a href="#cta" class="btn-primary btn-large" id="hero-cta">
+            Request Early Access
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.5h10M8 3l4.5 4.5L8 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#how-it-works" class="btn-ghost-outline btn-large">
+            See how it works
+          </a>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="dashboard-frame">
+            <div class="dashboard-chrome">
+              <span class="chrome-dot chrome-red"></span>
+              <span class="chrome-dot chrome-yellow"></span>
+              <span class="chrome-dot chrome-green"></span>
+              <span class="chrome-title">Verity &mdash; Relationship Intelligence</span>
+            </div>
+            <div class="dashboard-body">
+              <div class="db-sidebar">
+                <div class="db-sidebar-item db-active">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="#FF6A2A" stroke-width="1"/><path d="M1 11c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#FF6A2A" stroke-width="1" stroke-linecap="round"/></svg>
+                  Clients
+                </div>
+                <div class="db-sidebar-item">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" stroke="#8E887F" stroke-width="1"/><path d="M3 6h6M3 4h4" stroke="#8E887F" stroke-width="1" stroke-linecap="round"/></svg>
+                  Matters
+                </div>
+                <div class="db-sidebar-item">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="4" cy="6" r="2" stroke="#8E887F" stroke-width="1"/><circle cx="9" cy="4" r="1.5" stroke="#8E887F" stroke-width="1"/><path d="M6 6h1.5" stroke="#8E887F" stroke-width="1" stroke-linecap="round"/></svg>
+                  Relationships
+                </div>
+                <div class="db-sidebar-item">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 9l2.5-2.5 2 2 3.5-4.5" stroke="#8E887F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Opportunities
+                </div>
+                <div class="db-sidebar-item">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 5.5h3l1.5-3 1.5 6 1.5-3h3" stroke="#8E887F" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Evidence
+                </div>
+              </div>
+              <div class="db-main">
+                <div class="db-graph-area">
+                  <svg class="db-svg" viewBox="0 0 320 180" fill="none">
+                    <defs>
+                      <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#FF6A2A" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#FF6A2A" stop-opacity="0"/>
+                      </radialGradient>
+                    </defs>
+                    <circle cx="160" cy="90" r="50" fill="url(#centerGlow)"/>
+                    <line x1="160" y1="90" x2="60" y2="35" stroke="#FF6A2A" stroke-width="0.8" stroke-opacity="0.5"/>
+                    <line x1="160" y1="90" x2="260" y2="35" stroke="#FF6A2A" stroke-width="0.8" stroke-opacity="0.5"/>
+                    <line x1="160" y1="90" x2="40" y2="130" stroke="#F4EFE6" stroke-width="0.8" stroke-opacity="0.4"/>
+                    <line x1="160" y1="90" x2="280" y2="130" stroke="#F4EFE6" stroke-width="0.8" stroke-opacity="0.4"/>
+                    <line x1="160" y1="90" x2="120" y2="160" stroke="#4A443C" stroke-width="0.8" stroke-opacity="0.6"/>
+                    <line x1="160" y1="90" x2="210" y2="20" stroke="#4A443C" stroke-width="0.8" stroke-opacity="0.6"/>
+                    <line x1="60" y1="35" x2="40" y2="130" stroke="#38332D" stroke-width="0.6" stroke-opacity="0.5"/>
+                    <line x1="260" y1="35" x2="280" y2="130" stroke="#38332D" stroke-width="0.6" stroke-opacity="0.5"/>
+                    <circle cx="160" cy="90" r="14" fill="#FF6A2A" fill-opacity="0.15" stroke="#FF6A2A" stroke-width="1"/>
+                    <circle cx="160" cy="90" r="6" fill="#FF6A2A"/>
+                    <circle cx="60" cy="35" r="9" fill="#1A1613" stroke="#FF6A2A" stroke-width="0.8" stroke-opacity="0.7"/>
+                    <circle cx="60" cy="35" r="4" fill="#FF6A2A" fill-opacity="0.6"/>
+                    <circle cx="260" cy="35" r="9" fill="#1A1613" stroke="#FF6A2A" stroke-width="0.8" stroke-opacity="0.7"/>
+                    <circle cx="260" cy="35" r="4" fill="#FF6A2A" fill-opacity="0.6"/>
+                    <circle cx="40" cy="130" r="8" fill="#1A1613" stroke="#F4EFE6" stroke-width="0.8" stroke-opacity="0.6"/>
+                    <circle cx="40" cy="130" r="3.5" fill="#F4EFE6" fill-opacity="0.5"/>
+                    <circle cx="280" cy="130" r="8" fill="#1A1613" stroke="#F4EFE6" stroke-width="0.8" stroke-opacity="0.6"/>
+                    <circle cx="280" cy="130" r="3.5" fill="#F4EFE6" fill-opacity="0.5"/>
+                    <circle cx="120" cy="160" r="6" fill="#1A1613" stroke="#4A443C" stroke-width="0.8"/>
+                    <circle cx="120" cy="160" r="2.5" fill="#8E887F" fill-opacity="0.4"/>
+                    <circle cx="210" cy="20" r="6" fill="#1A1613" stroke="#4A443C" stroke-width="0.8"/>
+                    <circle cx="210" cy="20" r="2.5" fill="#8E887F" fill-opacity="0.4"/>
+                    <text x="60" y="22" text-anchor="middle" fill="#D6D0C6" font-size="7" font-family="Inter, sans-serif">Ashfield Capital</text>
+                    <text x="262" y="22" text-anchor="middle" fill="#D6D0C6" font-size="7" font-family="Inter, sans-serif">Nexus Holdings</text>
+                    <text x="34" y="148" text-anchor="middle" fill="#8E887F" font-size="7" font-family="Inter, sans-serif">Director</text>
+                    <text x="288" y="148" text-anchor="middle" fill="#8E887F" font-size="7" font-family="Inter, sans-serif">Market</text>
+                    <text x="160" y="106" text-anchor="middle" fill="#D6D0C6" font-size="7.5" font-family="Inter, sans-serif">Your Client</text>
+                  </svg>
+
+                  <!-- Interactive intelligence layer (graph.js) -->
+                  <canvas class="graph-canvas" id="graphCanvas"></canvas>
+                  <div class="graph-labels" id="graphLabels"></div>
+                  <div class="graph-card" id="graphCard"></div>
+                  <div class="graph-hint" id="graphHint">Drag to explore &middot; tap a node</div>
+                </div>
+                <div class="db-cards-row">
+                  <div class="db-mini-card">
+                    <span class="db-mini-label">Connections</span>
+                    <span class="db-mini-val">247</span>
+                  </div>
+                  <div class="db-mini-card">
+                    <span class="db-mini-label">Opportunities</span>
+                    <span class="db-mini-val db-val-green">12 new</span>
+                  </div>
+                  <div class="db-mini-card">
+                    <span class="db-mini-label">Evidence items</span>
+                    <span class="db-mini-val">1,842</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Floating cards -->
+          <div class="float-card float-1">
+            <div class="float-icon float-icon-violet">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="4" r="2" stroke="#FF6A2A" stroke-width="1.1"/><path d="M1 11c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#FF6A2A" stroke-width="1.1" stroke-linecap="round"/></svg>
+            </div>
+            <div class="float-text">
+              <span class="float-label">Connection discovered</span>
+              <span class="float-val">Ashfield Capital &rarr; Nexus Law</span>
+            </div>
+            <span class="float-badge badge-new">New</span>
+          </div>
+
+          <div class="float-card float-2">
+            <div class="float-icon float-icon-green">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#F4EFE6" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="float-text">
+              <span class="float-label">Opportunity surfaced</span>
+              <span class="float-val">Series B &mdash; Matches criteria</span>
+            </div>
+            <span class="float-badge badge-act">Act</span>
+          </div>
+
+          <div class="float-card float-3">
+            <div class="float-icon float-icon-blue">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" stroke="#F4EFE6" stroke-width="1.1"/><path d="M3 6h6M3 4h4M3 8h2" stroke="#F4EFE6" stroke-width="1.1" stroke-linecap="round"/></svg>
+            </div>
+            <div class="float-text">
+              <span class="float-label">Evidence gathered</span>
+              <span class="float-val">3 filings &middot; 2 announcements</span>
+            </div>
+          </div>
+        </div>
+        <p class="demo-note">Example data, shown for illustration.</p>
+      </div>
+    </section>
+
+    <!-- TRUST STRIP -->
+    <section class="trust-strip">
+      <p class="trust-label">Built for the world&rsquo;s most discerning firms</p>
+      <div class="trust-row">
+        <span>Private Equity</span>
+        <span class="trust-dot">&middot;</span>
+        <span>M&amp;A Advisory</span>
+        <span class="trust-dot">&middot;</span>
+        <span>Corporate Finance</span>
+        <span class="trust-dot">&middot;</span>
+        <span>Dispute Resolution</span>
+        <span class="trust-dot">&middot;</span>
+        <span>Capital Markets</span>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS / KNOWLEDGE -->
+    <section class="section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Foundation</span>
+          <h2 class="section-title">Verity knows your firm&rsquo;s world.</h2>
+          <p class="section-body">At its foundation, Verity maintains a structured understanding of everything your firm touches &mdash; so nothing slips through the gaps.</p>
+        </div>
+
+        <div class="knowledge-grid">
+          <div class="k-card" style="--i:0">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="14" height="14" rx="3" stroke="#FF6A2A" stroke-width="1.2"/><path d="M5 9h8M5 6h5M5 12h3" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Clients &amp; Matters</h3>
+            <p>Every client, every matter, every book &mdash; organised and surfaced when it matters.</p>
+          </div>
+          <div class="k-card" style="--i:1">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="6" r="3" stroke="#FF6A2A" stroke-width="1.2"/><path d="M3 16c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>People</h3>
+            <p>Directors, advisers, investors, and partners &mdash; all mapped across your ecosystem.</p>
+          </div>
+          <div class="k-card" style="--i:2">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="6" cy="9" r="3" stroke="#FF6A2A" stroke-width="1.2"/><circle cx="13" cy="6" r="2.5" stroke="#FF6A2A" stroke-width="1.2"/><path d="M9 9h2" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/><circle cx="13" cy="13" r="2" stroke="#FF6A2A" stroke-width="1.2"/><path d="M9 10l2 2" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Relationships</h3>
+            <p>The connections between entities &mdash; visible, traceable, and continuously updated.</p>
+          </div>
+          <div class="k-card" style="--i:3">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 10c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7-7-3.13-7-7z" stroke="#FF6A2A" stroke-width="1.2"/><path d="M9 6v4l2.5 1.5" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Organisations</h3>
+            <p>Companies, funds, regulators, and markets &mdash; understood in their full context.</p>
+          </div>
+          <div class="k-card" style="--i:4">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13l3.5-3.5 2.5 2.5 5-6.5" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/><rect x="2" y="2" width="14" height="14" rx="2" stroke="#FF6A2A" stroke-width="1.2"/></svg>
+            </div>
+            <h3>Evidence &amp; Events</h3>
+            <p>Every claim grounded in traceable evidence &mdash; filings, announcements, events.</p>
+          </div>
+          <div class="k-card" style="--i:5">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 9h14M9 2v14" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/><circle cx="9" cy="9" r="7" stroke="#FF6A2A" stroke-width="1.2"/></svg>
+            </div>
+            <h3>Industries &amp; Markets</h3>
+            <p>Commercial developments, sector dynamics, and regulatory shifts &mdash; as they develop.</p>
+          </div>
+          <div class="k-card" style="--i:6">
+            <div class="k-icon">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2l2.4 4.8H16l-3.8 2.8 1.4 4.8L9 11.6l-4.6 2.8 1.4-4.8L2 6.8h4.6L9 2z" stroke="#FF6A2A" stroke-width="1.2" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Firm Criteria</h3>
+            <p>Your firm&rsquo;s own policies and target profiles &mdash; embedded into every assessment.</p>
+          </div>
+          <div class="k-card k-card-cta" style="--i:7">
+            <p>Everything your firm knows &mdash; and everything it should.</p>
+            <a href="#cta" class="btn-primary btn-sm">Learn more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THREE PILLARS -->
+    <section class="section section-dark" id="capabilities">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Core Intelligence</span>
+          <h2 class="section-title">Three ideas. One platform.</h2>
+          <p class="section-body">Verity is built on three interlocking principles. Each one makes the others more powerful.</p>
+        </div>
+
+        <div class="pillars">
+
+          <!-- 01 Relationships -->
+          <div class="pillar">
+            <div class="pillar-header">
+              <span class="pillar-num">01</span>
+              <span class="pillar-tag">Relationships</span>
+            </div>
+            <h3 class="pillar-title">Verity connects the dots.</h3>
+            <p class="pillar-body">Verity maps every connection surrounding the firm &mdash; going far beyond what has been recorded. It looks across the full network of people and entities your firm touches.</p>
+
+            <div class="chain">
+              <span class="chain-node">Clients</span>
+              <span class="chain-arr">&rarr;</span>
+              <span class="chain-node">People</span>
+              <span class="chain-arr">&rarr;</span>
+              <span class="chain-node">Companies</span>
+              <span class="chain-arr">&rarr;</span>
+              <span class="chain-node">Investors</span>
+              <span class="chain-arr">&rarr;</span>
+              <span class="chain-node chain-more">+more</span>
+            </div>
+
+            <div class="pillar-viz">
+              <svg viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <radialGradient id="pg" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#FF6A2A" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#FF6A2A" stop-opacity="0"/>
+                  </radialGradient>
+                </defs>
+                <circle cx="180" cy="100" r="55" fill="url(#pg)"/>
+                <line x1="180" y1="100" x2="70" y2="40" stroke="#FF6A2A" stroke-width="0.8" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+                <line x1="180" y1="100" x2="300" y2="40" stroke="#FF6A2A" stroke-width="0.8" stroke-opacity="0.45" stroke-dasharray="4 3"/>
+                <line x1="180" y1="100" x2="50" y2="155" stroke="#F4EFE6" stroke-width="0.8" stroke-opacity="0.35" stroke-dasharray="4 3"/>
+                <line x1="180" y1="100" x2="310" y2="155" stroke="#F4EFE6" stroke-width="0.8" stroke-opacity="0.35" stroke-dasharray="4 3"/>
+                <line x1="180" y1="100" x2="140" y2="180" stroke="#4A443C" stroke-width="0.8" stroke-opacity="0.5"/>
+                <line x1="180" y1="100" x2="240" y2="22" stroke="#4A443C" stroke-width="0.8" stroke-opacity="0.5"/>
+                <line x1="70" y1="40" x2="50" y2="155" stroke="#38332D" stroke-width="0.6" stroke-opacity="0.5"/>
+                <line x1="300" y1="40" x2="310" y2="155" stroke="#38332D" stroke-width="0.6" stroke-opacity="0.5"/>
+                <circle cx="180" cy="100" r="16" fill="#FF6A2A" fill-opacity="0.12" stroke="#FF6A2A" stroke-width="1.2"/>
+                <circle cx="180" cy="100" r="7" fill="#FF6A2A"/>
+                <text x="180" y="120" text-anchor="middle" fill="#D6D0C6" font-size="9" font-family="Inter,sans-serif">Your Client</text>
+                <circle cx="70" cy="40" r="10" fill="#1A1613" stroke="#FF6A2A" stroke-width="0.9" stroke-opacity="0.6"/>
+                <circle cx="70" cy="40" r="4.5" fill="#FF6A2A" fill-opacity="0.55"/>
+                <text x="70" y="24" text-anchor="middle" fill="#D6D0C6" font-size="8.5" font-family="Inter,sans-serif">Director</text>
+                <circle cx="300" cy="40" r="10" fill="#1A1613" stroke="#FF6A2A" stroke-width="0.9" stroke-opacity="0.6"/>
+                <circle cx="300" cy="40" r="4.5" fill="#FF6A2A" fill-opacity="0.55"/>
+                <text x="300" y="24" text-anchor="middle" fill="#D6D0C6" font-size="8.5" font-family="Inter,sans-serif">Investor</text>
+                <circle cx="50" cy="155" r="9" fill="#1A1613" stroke="#F4EFE6" stroke-width="0.9" stroke-opacity="0.5"/>
+                <circle cx="50" cy="155" r="4" fill="#F4EFE6" fill-opacity="0.4"/>
+                <text x="50" y="174" text-anchor="middle" fill="#8E887F" font-size="8.5" font-family="Inter,sans-serif">Company</text>
+                <circle cx="310" cy="155" r="9" fill="#1A1613" stroke="#F4EFE6" stroke-width="0.9" stroke-opacity="0.5"/>
+                <circle cx="310" cy="155" r="4" fill="#F4EFE6" fill-opacity="0.4"/>
+                <text x="312" y="174" text-anchor="middle" fill="#8E887F" font-size="8.5" font-family="Inter,sans-serif">Market</text>
+                <circle cx="140" cy="180" r="7" fill="#1A1613" stroke="#4A443C" stroke-width="0.8"/>
+                <circle cx="140" cy="180" r="2.5" fill="#8E887F" fill-opacity="0.3"/>
+                <circle cx="240" cy="22" r="7" fill="#1A1613" stroke="#4A443C" stroke-width="0.8"/>
+                <circle cx="240" cy="22" r="2.5" fill="#8E887F" fill-opacity="0.3"/>
+                <text x="140" y="196" text-anchor="middle" fill="#8E887F" font-size="8" font-family="Inter,sans-serif">Adviser</text>
+                <text x="240" y="10" text-anchor="middle" fill="#8E887F" font-size="8" font-family="Inter,sans-serif">Partner</text>
+              </svg>
+            </div>
+
+            <p class="pillar-note">A relationship that appears insignificant on its own may become important when placed inside the larger network. Verity&rsquo;s job is to connect the dots.</p>
+          </div>
+
+          <!-- 02 Evidence -->
+          <div class="pillar">
+            <div class="pillar-header">
+              <span class="pillar-num">02</span>
+              <span class="pillar-tag">Evidence</span>
+            </div>
+            <h3 class="pillar-title">Every claim is traceable.</h3>
+            <p class="pillar-body">Verity does not simply make claims. It gathers and organises the information supporting them. Every meaningful discovery should be traceable back to why Verity believes it matters.</p>
+
+            <div class="principle-row">
+              <div class="principle-item">
+                <div class="pi-icon pi-green">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 1v10M1 6h10" stroke="#F4EFE6" stroke-width="1.2" stroke-linecap="round"/></svg>
+                </div>
+                Flag
+              </div>
+              <span class="pi-arrow">&rarr;</span>
+              <div class="principle-item">
+                <div class="pi-icon pi-blue">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6h10M7 3l3 3-3 3" stroke="#F4EFE6" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                Explain
+              </div>
+              <span class="pi-arrow">&rarr;</span>
+              <div class="principle-item">
+                <div class="pi-icon pi-violet">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="2" stroke="#FF6A2A" stroke-width="1.2"/><path d="M3.5 6l2 2 3-3.5" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                Support
+              </div>
+            </div>
+
+            <div class="ev-tags-wrap">
+              <p class="ev-tags-title">Evidence can include</p>
+              <div class="ev-tags">
+                <span class="ev-tag">Public filings</span>
+                <span class="ev-tag">Company announcements</span>
+                <span class="ev-tag">News</span>
+                <span class="ev-tag">Ownership records</span>
+                <span class="ev-tag">Financing events</span>
+                <span class="ev-tag">Acquisitions</span>
+                <span class="ev-tag">Regulatory developments</span>
+                <span class="ev-tag">Litigation events</span>
+                <span class="ev-tag">Relationship records</span>
+              </div>
+            </div>
+
+            <div class="ev-card">
+              <div class="ev-card-top">
+                <span class="ev-confidence ev-conf-high">Confident</span>
+                <span class="ev-sources">3 sources &middot; illustrative example</span>
+              </div>
+              <p class="ev-finding">Ashfield Capital has increased its stake in Nexus Holdings to 18.4%, crossing a disclosure threshold.</p>
+              <div class="ev-trace">
+                <span>&#x1F4C4; Company registry filing &middot; 14 Aug 2026</span>
+                <span>&#x1F4F0; News report &middot; 15 Aug 2026</span>
+                <span>&#x1F4CA; Ownership data &middot; 16 Aug 2026</span>
+              </div>
+            </div>
+
+            <p class="pillar-note">The principle is: <strong>Flag, explain, support. Don&rsquo;t pretend to know.</strong> If the evidence is weak, Verity communicates that.</p>
+          </div>
+
+          <!-- 03 Opportunities -->
+          <div class="pillar">
+            <div class="pillar-header">
+              <span class="pillar-num">03</span>
+              <span class="pillar-tag">Opportunities</span>
+            </div>
+            <h3 class="pillar-title">Relationships become actions.</h3>
+            <p class="pillar-body">Relationships and evidence ultimately become useful when they reveal something the firm can act upon. Verity continuously scans for what matters to your firm.</p>
+
+            <div class="opp-grid">
+              <div class="opp-item"><span class="opp-dot opp-v"></span>Potential introductions</div>
+              <div class="opp-item"><span class="opp-dot opp-v"></span>Potential partnerships</div>
+              <div class="opp-item"><span class="opp-dot opp-b"></span>Prospective clients</div>
+              <div class="opp-item"><span class="opp-dot opp-b"></span>Expansion opportunities</div>
+              <div class="opp-item"><span class="opp-dot opp-g"></span>Financing activity</div>
+              <div class="opp-item"><span class="opp-dot opp-g"></span>Acquisition signals</div>
+              <div class="opp-item"><span class="opp-dot opp-a"></span>Clients requiring attention</div>
+              <div class="opp-item"><span class="opp-dot opp-a"></span>Companies matching criteria</div>
+            </div>
+
+            <div class="opp-alert">
+              <div class="opp-alert-top">
+                <span class="opp-alert-badge">Opportunity surfaced</span>
+                <span class="opp-alert-time">Illustrative example</span>
+              </div>
+              <p class="opp-alert-title">Meridian Infrastructure &mdash; Series B closing in 6 weeks</p>
+              <p class="opp-alert-body">Connected to 2 existing clients. Matches your firm&rsquo;s infrastructure mandate. Legal counsel not yet appointed.</p>
+              <div class="opp-alert-btns">
+                <button class="opp-btn-review">Review opportunity</button>
+                <button class="opp-btn-dismiss">Dismiss</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats-section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat">
+            <div class="stat-num stat-word">Sourced</div>
+            <div class="stat-label">Every finding links to the documents behind it</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num stat-word">Flagged</div>
+            <div class="stat-label">Weak evidence is labelled, never hidden</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num stat-word">On-site</div>
+            <div class="stat-label">Runs on a server in your own office</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <div class="stat-num stat-word">Partner-led</div>
+            <div class="stat-label">Partners decide who sees what</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PARTNER VIEW -->
+    <section class="section" id="partner-view">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Built for Partners</span>
+          <h2 class="section-title">What a partner sees in Verity.</h2>
+          <p class="section-body">In a single view, a senior partner can answer the five questions that matter most &mdash; without chasing associates or pulling reports.</p>
+        </div>
+
+        <div class="pq-list">
+          <div class="pq" data-q="1">
+            <div class="pq-num">Q1</div>
+            <div class="pq-content">
+              <h3>Who are our clients?</h3>
+              <p>Every client in the firm &mdash; their matters, their books, their status &mdash; mapped and current. No spreadsheets, no chasing.</p>
+            </div>
+          </div>
+          <div class="pq" data-q="2">
+            <div class="pq-num">Q2</div>
+            <div class="pq-content">
+              <h3>What are they doing?</h3>
+              <p>Live commercial activity, recent events, and developments &mdash; with evidence tracing back to source.</p>
+            </div>
+          </div>
+          <div class="pq" data-q="3">
+            <div class="pq-num">Q3</div>
+            <div class="pq-content">
+              <h3>Who are they connected to?</h3>
+              <p>The full network surrounding each client &mdash; people, companies, investors, markets &mdash; surfaced and navigable.</p>
+            </div>
+          </div>
+          <div class="pq" data-q="4">
+            <div class="pq-num">Q4</div>
+            <div class="pq-content">
+              <h3>What&rsquo;s changing?</h3>
+              <p>Alerts on regulatory shifts, financing events, ownership changes, and commercial developments &mdash; before they become problems.</p>
+            </div>
+          </div>
+          <div class="pq" data-q="5">
+            <div class="pq-num">Q5</div>
+            <div class="pq-content">
+              <h3>What should we be paying attention to?</h3>
+              <p>Verity continuously scores and surfaces the connections and opportunities that match your firm&rsquo;s criteria &mdash; so nothing falls through the cracks.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTROL -->
+    <section class="section" id="control">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Control</span>
+          <h2 class="section-title">Partners hold the keys.</h2>
+          <p class="section-body">Verity answers to the people accountable for the firm. Leadership decides who sees what, and Verity follows those rules.</p>
+        </div>
+
+        <div class="control-grid">
+          <div class="k-card">
+            <div class="k-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3.5" y="8" width="11" height="7.5" rx="2" stroke="#FF6A2A" stroke-width="1.2"/><path d="M6 8V6a3 3 0 0 1 6 0v2" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            <h3>Restrict</h3>
+            <p>Keep sensitive client information visible only to the people you name.</p>
+          </div>
+          <div class="k-card">
+            <div class="k-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="1.8" fill="#FF6A2A"/><path d="M5.6 5.6a4.8 4.8 0 0 0 0 6.8M12.4 5.6a4.8 4.8 0 0 1 0 6.8M3.2 3.2a8.2 8.2 0 0 0 0 11.6M14.8 3.2a8.2 8.2 0 0 1 0 11.6" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/></svg></div>
+            <h3>Share with the firm</h3>
+            <p>Release what everyone needs to know, once, to everyone at the same time.</p>
+          </div>
+          <div class="k-card">
+            <div class="k-icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7" cy="6" r="2.8" stroke="#FF6A2A" stroke-width="1.2"/><path d="M1.8 15c0-2.9 2.3-5.2 5.2-5.2 1 0 1.9.3 2.7.8" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round"/><path d="M10.5 13h5M13 10.5l2.5 2.5-2.5 2.5" stroke="#FF6A2A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <h3>Send to named people</h3>
+            <p>Direct a finding or an opportunity to specific colleagues, and no one else.</p>
+          </div>
+        </div>
+
+        <p class="control-note">Partners ask Verity directly, and decide what everyone else can see.</p>
+      </div>
+    </section>
+
+    <!-- ON-SITE + BOUNDARIES -->
+    <section class="section section-dark" id="on-site">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Confidentiality</span>
+          <h2 class="section-title">Your client data stays in your office.</h2>
+          <p class="section-body">Verity is installed on a server inside your own premises and runs on a language model hosted there. Your client list, your files and your questions are not sent to a cloud AI service.</p>
+        </div>
+
+        <div class="onsite-grid">
+          <div class="pillar">
+            <div class="pillar-header">
+              <span class="pillar-tag">Where it runs</span>
+            </div>
+            <h3 class="pillar-title">On your premises.</h3>
+            <ul class="onsite-list">
+              <li>
+                <h4>A server in your office</h4>
+                <p>Installed and configured for your firm. Your records and your permissions live on it.</p>
+              </li>
+              <li>
+                <h4>A local language model</h4>
+                <p>The reasoning happens on that same server, so no outside AI service holds your questions.</p>
+              </li>
+              <li>
+                <h4>Public sources from outside</h4>
+                <p>Verity looks up public information such as filings and announcements. Your files and client records stay on your server.</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="pillar">
+            <div class="pillar-header">
+              <span class="pillar-tag">Boundaries</span>
+            </div>
+            <h3 class="pillar-title">What Verity does not do.</h3>
+            <ul class="onsite-list">
+              <li>
+                <h4>It does not clear conflicts</h4>
+                <p>Verity flags items for human review. Your people make the determination.</p>
+              </li>
+              <li>
+                <h4>It does not replace lawyers</h4>
+                <p>Verity informs a partner&rsquo;s judgement. It does not make legal decisions on its own.</p>
+              </li>
+              <li>
+                <h4>It does not guess</h4>
+                <p>Where the evidence is thin, Verity says so instead of filling the gap.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section" id="cta">
+      <div class="container">
+        <div class="cta-block">
+          <div class="glow glow-cta" aria-hidden="true"></div>
+          <span class="cta-badge">Private Access &middot; Sovereign Labs</span>
+          <h2 class="cta-title">Verity is in private access.</h2>
+          <p class="cta-body">We&rsquo;re working with a select group of firms to deploy Verity and build the intelligence layer they&rsquo;ve been missing. If your firm is interested, we&rsquo;d like to hear from you.</p>
+          <form class="cta-form" id="ctaForm" novalidate>
+            <div class="form-row">
+              <input type="text" class="form-input" id="f-name" placeholder="Your name" autocomplete="name" required />
+              <input type="email" class="form-input" id="f-email" placeholder="Work email" autocomplete="email" required />
+            </div>
+            <input type="text" class="form-input" id="f-firm" placeholder="Firm name" autocomplete="organization" required />
+            <button type="submit" class="btn-primary btn-large btn-full" id="cta-submit">
+              Request Access to Verity
+              <svg width="15" height="15" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M2.5 7.5h10M8 3l4.5 4.5L8 12" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+          <p class="cta-disclaimer">We respond to every request within 48 hours. No spam, ever.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo">
+            <img class="logo-mark" src="/assets/logo-mark.png" alt="" width="30" height="30" />
+            <span class="logo-text">Verity</span>
+          </a>
+          <p class="footer-tagline">Intelligence software for law firms.<br/>A product of Sovereign Labs.</p>
+        </div>
+        <div class="footer-cols">
+          <div class="footer-col">
+            <span class="footer-col-title">Product</span>
+            <a href="/#how-it-works" class="footer-link">How it works</a>
+            <a href="/#capabilities" class="footer-link">Capabilities</a>
+            <a href="/#control" class="footer-link">Control</a>
+            <a href="/#cta" class="footer-link">Request Access</a>
+          </div>
+          <div class="footer-col">
+            <span class="footer-col-title">Company</span>
+            <span class="footer-link  footer-link-static">Sovereign Labs</span>
+            <a href="/privacy.html" class="footer-link">Privacy</a>
+            <a href="/terms.html" class="footer-link">Terms</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Sovereign Labs. All rights reserved.</span>
+        <span>Built with precision.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+  <script src="/build.js"></script>
+  <script type="module" src="/blob.js"></script>
+  <script type="module" src="/graph.js"></script>
+</body>
+</html>

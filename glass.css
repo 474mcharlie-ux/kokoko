@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Verity — Transparent UI
+   One overlay file, loaded after every other stylesheet.
+   To go back to the opaque look, delete the <link href="/glass.css"> line
+   in index.html. Nothing else depends on this file.
+   ========================================================================== */
+
+:root {
+  --g-fill: rgba(22, 19, 16, 0.34);
+  --g-edge: rgba(244, 239, 230, 0.16);
+  --g-shine: rgba(244, 239, 230, 0.26);
+  --g-blur: 22px;
+  --g-shadow: 0 30px 70px -34px rgba(0, 0, 0, 0.85);
+}
+
+/* --------------------------------------------------------------------------
+   Ambient light. A fixed layer of soft ember glow sits behind the whole page,
+   so every glass surface has something to pick up as you scroll.
+   -------------------------------------------------------------------------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60vmax 45vmax at 88% 10%, rgba(255, 106, 42, 0.17), transparent 60%),
+    radial-gradient(55vmax 40vmax at 6% 52%, rgba(217, 75, 32, 0.15), transparent 62%),
+    radial-gradient(50vmax 40vmax at 72% 98%, rgba(255, 106, 42, 0.11), transparent 60%);
+}
+
+/* The big opaque bands would hide that light, so let it through. */
+.hero,
+.trust-strip,
+.footer {
+  background: transparent;
+}
+.section-dark {
+  background: linear-gradient(180deg, transparent, rgba(16, 14, 12, 0.4) 50%, transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Top-level glass surfaces. Only these blur what is behind them. Anything
+   nested inside them uses a plain tint, so blur never stacks on blur.
+   -------------------------------------------------------------------------- */
+.dashboard-frame,
+.float-card,
+.k-card,
+.pillar,
+.cta-block,
+.mobile-menu,
+.nav.is-scrolled .nav-inner {
+  -webkit-backdrop-filter: blur(var(--g-blur)) saturate(150%);
+  backdrop-filter: blur(var(--g-blur)) saturate(150%);
+}
+
+.nav.is-scrolled .nav-inner {
+  background: rgba(22, 19, 16, 0.4);
+  border-color: var(--g-edge);
+  box-shadow: var(--g-shadow), inset 0 1px 0 var(--g-shine);
+}
+.mobile-menu {
+  background: rgba(16, 14, 12, 0.72);
+  border-color: var(--g-edge);
+}
+
+/* Dashboard window: see the glow through it */
+.dashboard-frame {
+  background: linear-gradient(160deg, rgba(36, 31, 26, 0.46), rgba(12, 10, 8, 0.3));
+  border-color: var(--g-edge);
+  box-shadow: var(--g-shadow), inset 0 1px 0 var(--g-shine), inset 0 0 0 1px rgba(244, 239, 230, 0.03);
+}
+.dashboard-chrome { background: rgba(244, 239, 230, 0.04); }
+.db-sidebar { background: rgba(244, 239, 230, 0.025); }
+.db-mini-card { background: rgba(244, 239, 230, 0.045); }
+
+.float-card {
+  background: var(--g-fill);
+  border-color: var(--g-edge);
+  box-shadow: var(--g-shadow), inset 0 1px 0 var(--g-shine);
+}
+
+/* Cards and pillars */
+.k-card,
+.pillar {
+  background: linear-gradient(180deg, rgba(244, 239, 230, 0.07), rgba(244, 239, 230, 0.02));
+  border-color: rgba(244, 239, 230, 0.12);
+  box-shadow: inset 0 1px 0 rgba(244, 239, 230, 0.14);
+}
+.k-card:hover {
+  background: linear-gradient(180deg, rgba(244, 239, 230, 0.1), rgba(244, 239, 230, 0.035));
+}
+.k-card-cta {
+  background: linear-gradient(160deg, rgba(255, 106, 42, 0.22), rgba(217, 75, 32, 0.05) 70%);
+}
+.ev-card,
+.pillar-viz {
+  background: rgba(244, 239, 230, 0.04);
+  border-color: rgba(244, 239, 230, 0.1);
+}
+
+/* Request-access panel and its fields */
+.cta-block {
+  background: linear-gradient(180deg, rgba(244, 239, 230, 0.07), rgba(244, 239, 230, 0.02));
+  box-shadow: var(--g-shadow), inset 0 1px 0 var(--g-shine);
+}
+.form-input { background: rgba(9, 8, 7, 0.32); }
+.form-input:focus { background: rgba(9, 8, 7, 0.5); }
+
+/* Once a block has finished revealing, drop its leftover blur(0) filter.
+   A filter on the element is a needless compositing cost on glass. */
+.reveal.reveal-done { filter: none; }
+
+/* --------------------------------------------------------------------------
+   Safety nets
+   -------------------------------------------------------------------------- */
+
+/* Browsers without backdrop-filter get near-opaque panels so text stays legible. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .dashboard-frame,
+  .float-card,
+  .k-card,
+  .pillar,
+  .cta-block,
+  .mobile-menu,
+  .nav.is-scrolled .nav-inner {
+    background: rgba(18, 15, 12, 0.94);
+  }
+}
+
+/* People who ask their system for less transparency get solid panels. */
+@media (prefers-reduced-transparency: reduce) {
+  body::after { display: none; }
+  .dashboard-frame,
+  .float-card,
+  .k-card,
+  .pillar,
+  .cta-block,
+  .mobile-menu,
+  .nav.is-scrolled .nav-inner {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background: rgba(18, 15, 12, 0.96) !important;
+  }
+  .hero,
+  .trust-strip,
+  .footer,
+  .section-dark { background: var(--bg); }
+}
